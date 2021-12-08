@@ -1,0 +1,22 @@
+{% extends 'base/main.html' %}
+
+{% block content %}
+    <div class="row mt-5">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <a href="{% url 'tasks' %}" class="btn btn-sm btn-info text-white"><i
+                            class="fas fa-long-arrow-alt-left"></i> back</a>
+                </div>
+                <div class="card-body">
+                    <h1 class="card-title">Confirm Delete</h1>
+                    <p>Are you sure to delete this task?</p>
+                    <form method="POST">
+                        {% csrf_token %}
+                        <input type="submit" value="Delete" class="btn btn-danger">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

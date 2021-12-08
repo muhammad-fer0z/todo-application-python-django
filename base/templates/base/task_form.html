@@ -1,0 +1,33 @@
+{% extends 'base/main.html' %}
+{% load widget_tweaks %}
+{% block content %}
+    <div class="row mt-5 justify-content-center">
+        <div class="col-xl-6 col-md-8 col-sm-10">
+            <div class="card">
+                <div class="card-header">
+                    <a href="{% url 'tasks' %}" class="btn btn-sm btn-info text-white"><i
+                            class="fas fa-long-arrow-alt-left"></i> back</a>
+                </div>
+                <div class="card-body">
+                    <h1 class="card-title">Task Form</h1>
+                    <form method="POST">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label>{{ form.title.label }}</label>
+                            {{ form.title|add_class:"form-control" }}
+                        </div>
+                        <div class="mb-3">
+                            <label>{{ form.description.label }}</label>
+                            {{ form.description|add_class:"form-control" }}
+                        </div>
+                        <div class="mb-3">
+                            <label>{{ form.complete.label }}</label>
+                            {{ form.complete|add_class:"form-check-input" }}
+                        </div>
+                        <button type="submit" class="btn btn-success">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

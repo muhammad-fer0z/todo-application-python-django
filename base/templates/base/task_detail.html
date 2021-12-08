@@ -1,0 +1,27 @@
+{% extends 'base/main.html' %}
+
+{% block content %}
+    <div class="row mt-5">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <a href="{% url 'tasks' %}" class="btn btn-sm btn-info text-white"><i
+                            class="fas fa-long-arrow-alt-left"></i> back</a>
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">{{ task.title }}</h5>
+                    <h6 class="card-subtitle text-muted mb-2">{{ task.created|timesince }}</h6>
+                    {% if task.description %}
+                        <p class="card-text">{{ task.description }}</p>
+                    {% endif %}
+
+                    {% if task.complete %}
+                        <span class="badge bg-success">Task Completed</span>
+                    {% else %}
+                        <span class="badge bg-info">Task Completed</span>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

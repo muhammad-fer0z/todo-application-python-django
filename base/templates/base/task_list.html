@@ -1,0 +1,31 @@
+{% extends 'base/main.html' %}
+
+{% block content %}
+
+    <h1 class="mb-3 mt-3">Todo Application</h1>
+    <a href="{% url 'task-create' %}" class="btn btn-primary mb-1">Add New Task</a>
+    <p class="mt-1">You have {{ count }} incomplete task{{ count|pluralize:"s" }}.</p>
+    <div class="w-100 bg-dark p-5">
+        <div class="row justify-content-center align-items-center">
+            {% for task in tasks %}
+                <div class="col-lg-3 col-md-6 col-sm-12 d-flex justify-content-center  mb-3">
+                    <div class="card" style="width: 18rem;">
+                        <div class="card-body">
+                            {% if task.complete %}
+                                <h5 class="card-title text-danger">
+                                    <del>{{ task.title }}</del>
+                                </h5>
+                            {% else %}
+                                <h5 class="card-title text-success">{{ task.title }}</h5>
+                            {% endif %}
+                            <h6 class="card-subtitle mb-2 text-muted">{{ task.created|timesince }}</h6>
+                            <a href="{% url 'task-detail' task.id %}" class="card-link">View</a>
+                            <a href="{% url 'task-update' task.id %}" class="card-link">Edit</a>
+                            <a href="{% url 'task-delete' task.id %}" class="card-link">Delete</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
